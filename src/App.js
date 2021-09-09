@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {memo} from 'react';
 import './App.css';
 import { Header } from './Components/Header/Header';
-import Todos from './Components/Todos';
-import AddTodo from './Components/AddTodo/Index';
+import TodosContainer from './container/TodosContainer';
+import AddTodoContainer from './container/AddTodoContainer';
 
 
 function App() {
@@ -10,12 +10,12 @@ function App() {
     <div>
       <div className="App">
         <Header/>
-        <AddTodo/>
-        <Todos/>
+        <AddTodoContainer/>
+        <TodosContainer/>
       </div>
         
     </div>
   );
 };
 
-export default App;
+export default memo(App);

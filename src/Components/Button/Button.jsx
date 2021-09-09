@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Button ({onClick}) {
-    return <button onClick={onClick}>Добавить в список</button>
+export function Button ({onClick, name}) {
+    return <button onClick={onClick}>{name}</button>
 }
 

@@ -1,32 +1,16 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { actionSetTodo } from "../../store/todo";
+import React from "react";
 import {Button} from '../Button/Button';
 import {Input} from '../Input/Input';
+import './style.scss';
 
 
-export default function AddTodo() {
-    const [value, setValue] = useState('');
-    const dispatch = useDispatch()
-
-
-    const handleChangeInput = (e) => {
-        setValue(e.target.value)
-    };
-
-    const handleCreateTodo = () => {
-        const data = {
-            title: value,
-            id: Date.now
-        }
-        dispatch(actionSetTodo(data));
-        setValue('');
-    }
-
+export default function AddTodo({value, handleCreateTodo, handleChangeInput, error}) {
+  
     return (
         <>
         <Input value={value} onChange={handleChangeInput}/>
-        <Button onClick={handleCreateTodo}/>
+        <Button onClick={handleCreateTodo} name={'Добавить'}/>
+        {error && <p className='error'>{error.massage}</p>}
         </>
     )
 }

@@ -6,15 +6,20 @@ const initState = {
  } 
 
 const actionTypes = {
-    SET_TODO: 'SET_TODO'
+    SET_TODO: 'SET_TODO',
+    REMOVE_TODO: 'REMOVE_TODO'
 };
 
-export const actionSetTodo = (payload) => ({ type: actionTypes.SET_TODO, payload })
+export const actionSetTodo = (payload) => ({ type: actionTypes.SET_TODO, payload });
+export const actionRemoveTodo = (payload) => ({ type: actionTypes.REMOVE_TODO, payload });
 
 export default function reducerTodo (state = initState, action){ 
     switch (action.type) {
         case actionTypes.SET_TODO:
-             return{...state, todos: [...state.todos, action.payload] }
+             return {...state, todos: [...state.todos, action.payload] }
+
+        case actionTypes.REMOVE_TODO:
+            return {...state, todos: state.todos.filter((item) => item.id !== action.payload)}
         default:
             return state;
     }

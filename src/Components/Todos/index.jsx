@@ -1,17 +1,18 @@
 import React from "react";
-import { useSelector } from 'react-redux';
+import { Button } from "../Button/Button";
 import './styles.scss';
 
-export default function Todos(){
-    const {todos} = useSelector((state) => state.reducerTodo);
-    console.log(todos);
+export default function Todos( {todos, handlerRemoveTodo} ) {
     return (
         <ul className='lists'>
-            {todos.map((item) => {
+            {todos.length ? todos.map((item) => {
                 return <li key={item.id} className='list'>
-                    {item.title}
+                    <div className='list__group'>
+                    <p className='list__paragraph'>{item.title}</p>
+                    <Button name="Удалить" onClick={() => handlerRemoveTodo(item.id)}/>
+                    </div>
                 </li>
-            })}
+            }) : <p>Нет списка дел</p>}
         </ul>
     )
 }
