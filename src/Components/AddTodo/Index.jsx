@@ -7,10 +7,10 @@ import './style.scss';
 export default function AddTodo({value, handleCreateTodo, handleChangeInput, error}) {
   
     return (
-        <>
-        <Input value={value} onChange={handleChangeInput}/>
+        <div className='group'>
+        <Input value={value} onChange={handleChangeInput} placeholder={'Написать дело'}/>
         <Button onClick={handleCreateTodo} name={'Добавить'}/>
         {error && <p className='error'>{error.massage}</p>}
-        </>
+        </div>
     )
 }

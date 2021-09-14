@@ -3,6 +3,8 @@ import './App.css';
 import { Header } from './Components/Header/Header';
 import TodosContainer from './container/TodosContainer';
 import AddTodoContainer from './container/AddTodoContainer';
+import AddCategoryContainer from './container/AddCategoryContainer';
+import CategoryListContainer from './container/CategoryListContainer';
 
 
 function App() {
@@ -10,10 +12,19 @@ function App() {
     <div>
       <div className="App">
         <Header/>
-        <AddTodoContainer/>
-        <TodosContainer/>
-      </div>
-        
+       <div className='wrapper__app'>
+        <div className='wrapper__todo'>
+          <div>
+          <AddTodoContainer/>
+          <TodosContainer/>
+          </div>
+        </div>
+        <div className='category'>
+          <AddCategoryContainer/>
+          <CategoryListContainer/>
+        </div>
+        </div>
+      </div>  
     </div>
   );
 };

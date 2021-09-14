@@ -9,7 +9,10 @@ export class Input extends Component {
     
     render() {
         return <>
-        {<input value={this.props.value} onChange={this.props.onChange} placeholder="Что нужно сделать"></input>}
+        {<input value={this.props.value} 
+        onChange={this.props.onChange}
+         placeholder={this.props.placeholder}>
+             </input>}
         
         </>
     }

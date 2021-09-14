@@ -17,7 +17,6 @@ class TodosContainer extends Component{
 const mapStateToProps = (state) =>{
     return {
         todo: state.reducerTodo.todos
-
     }
 }
 const mapDispatchToProps = (dispatch) => {

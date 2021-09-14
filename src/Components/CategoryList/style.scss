@@ -1,0 +1,12 @@
+.categories{
+    list-style: none;
+    min-width: 500px;
+    padding: 5px;
+    li {
+        border:  1px solid rgb(48, 141, 153);
+        display: flex;
+        justify-content: space-between;
+        margin: 5px;
+        padding: 5px;
+    }
+}

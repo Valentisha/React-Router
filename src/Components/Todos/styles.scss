@@ -1,10 +1,13 @@
 .lists {
     list-style: none;
-    max-width: 500px;
+    min-width: 500px;
+    padding: 0;
     
 }
 
 .list {
+    display: flex;
+    justify-content: space-between;
     margin: 5px;
     border: 1px solid rgb(48, 141, 153);
     padding: 5px;
@@ -17,4 +20,11 @@
         margin: 0;
     }
 }
- 
+
+.icons {
+    svg {
+        padding: 5px;
+    }
+
+}
+    
