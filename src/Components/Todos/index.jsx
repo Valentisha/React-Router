@@ -3,13 +3,25 @@ import {Link} from 'react-router-dom';
 import './styles.scss';
 import EditIcon from "../Icons/Edit";
 import RemoveIcon from "../Icons/Remove";
+import { Input } from "../Input/Input";
+import { Button } from "../Button/Button";
 
 
-export default function Todos( {todos, handlerRemoveTodo} ) {
+export default function Todos({isShow, 
+    todoId, 
+    handlerChange, 
+    updateTitle, 
+    handlerShowTodo, 
+    handlerClose,
+    todos, 
+    error,
+    handlerUpdateTodo,
+    handlerRemoveTodo}) {
     return (
         <ul className='lists'>
             {todos.length ? todos.map((item) => {
-                return <li key={item.id} className='list'>
+                return <>
+                <li key={item.id} className='list'>
                      <Link to={`/todo/${item.id}`}> 
                     <div className='list__group'>
                       <p className='list__paragraph'>
@@ -18,10 +30,19 @@ export default function Todos( {todos, handlerRemoveTodo} ) {
                       </div>
                       </Link>
                       <div className='icons'>
-                      <EditIcon/>
-                      <RemoveIcon onClick={() => handlerRemoveTodo(item.id)}/>
+                      <EditIcon onClick={() => handlerShowTodo(item.id, item.title)}/>
+                      {item.id === todoId && isShow || <RemoveIcon onClick={() => handlerRemoveTodo(item.id)}/>}
                       </div>  
                 </li>
+                {item.id === todoId && isShow && 
+                <>
+                     <Input value={updateTitle} onChange={handlerChange} placeholder='edit'/>
+                     <Button name='Сохранить' onClick={() => handlerUpdateTodo(item.id)}/>
+                     <Button name='Закрыть' onClick={handlerClose}/>
+                     {error && <p className='error'>{error.massage}</p>}
+                     </>
+            }
+                </>
             }) : <p>Нет списка дел</p>}
         </ul>
     )

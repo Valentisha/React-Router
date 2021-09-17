@@ -23,12 +23,11 @@ class AddTodoContainer extends Component{
             title: this.state.value,
             id: Date.now()
         };
-        if(!this.state.value) {
+        if(!this.state.value.trim()) {
             return this.setState({error: {massage: 'Дело не написано'}});
         }
         this.props.actionSetTodo(data)
         this.setState({value: ''});
-        this.setState({error: {massage: ''}});
     };
 
     render(){
