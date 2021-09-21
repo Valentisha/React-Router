@@ -25,7 +25,6 @@ export default function reducerTodo (state = initState, action){
 
         case actionTypes.REMOVE_TODO:
             console.log(state, action)
-            // debugger
             return {...state, todos: state.todos.filter((item) => item.id !== action.payload)}
 
         case actionTypes.EDIT_TODO:

@@ -20,18 +20,20 @@ export default function Todos({isShow,
     return (
         <ul className='lists'>
             {todos.length ? todos.map((item) => {
-                return <>
-                <li key={item.id} className='list'>
+                return <div key={item.id}>
+                <li  className='list'>
                      <Link to={`/todo/${item.id}`}> 
                     <div className='list__group'>
                       <p className='list__paragraph'>
-                        {item.title}
+                        {item.title} 
                       </p>
                       </div>
                       </Link>
                       <div className='icons'>
                       <EditIcon onClick={() => handlerShowTodo(item.id, item.title)}/>
-                      {item.id === todoId && isShow || <RemoveIcon onClick={() => handlerRemoveTodo(item.id)}/>}
+                      { <RemoveIcon onClick={() => handlerRemoveTodo(item.id)}/>}
+                      {/* { item.id === todoId && isShow || <RemoveIcon onClick={() => handlerRemoveTodo(item.id)}/>} */}
+                     
                       </div>  
                 </li>
                 {item.id === todoId && isShow && 
@@ -42,7 +44,7 @@ export default function Todos({isShow,
                      {error && <p className='error'>{error.massage}</p>}
                      </>
             }
-                </>
+                </div>
             }) : <p>Нет списка дел</p>}
         </ul>
     )

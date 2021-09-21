@@ -4,12 +4,5 @@
 
 .wrapper__app{
   display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  
-}
-
-.category{
-  min-width: 500px;
-  margin: 20px;
+  align-items: baseline;
 }

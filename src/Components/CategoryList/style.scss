@@ -4,9 +4,28 @@
     padding: 5px;
     li {
         border:  1px solid rgb(48, 141, 153);
-        display: flex;
-        justify-content: space-between;
+        margin-bottom: 5px;
+        
+    }
+}
+
+.category{
+    display: flex;
+    flex-wrap: wrap;
+    &__item{
+        width: 100%;
+    display: flex;
+    justify-content: space-between;
+    p{
         margin: 5px;
-        padding: 5px;
+    }
+    }
+    &__important{
+        color: rgb(48, 141, 153);
+    }
+    &__group-filter{
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
     }
 }

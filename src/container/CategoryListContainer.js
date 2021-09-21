@@ -1,11 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CategoryList from "../Components/CategoryList";
 import { actionUpdateCheckbox } from "../store/category";
+import { useRouteMatch } from "react-router";
 
 
 export default function CategoryListContainer(){
-    const {category} = useSelector((state) => state.reducerCategory);
+    const {category, filterCategory} = useSelector((state) => state.reducerCategory);
+    const match = useRouteMatch('/todo/:id')
+    const matchTodoId = +match?.params.id;
+
     const dispatch = useDispatch()
 
     const handlerChecked=(e, categoryId) => {
@@ -16,6 +20,26 @@ export default function CategoryListContainer(){
         dispatch(actionUpdateCheckbox(data)) 
     }
 
-    return <CategoryList category={category} 
-    handlerChecked={handlerChecked} />
+    switch (filterCategory) {
+        case 'all':
+            return <CategoryList
+              category={category}
+                handlerChecked={handlerChecked}/>
+        case 'filterActive': 
+            return <CategoryList
+                            category={category.filter((item) => item.checked)}
+                    handlerChecked={handlerChecked} />;
+        case 'filterImportant':
+            return <CategoryList
+                            category={category.filter((item) => item.important)}
+                    handlerChecked={handlerChecked} />;
+        default:
+            return <CategoryList
+                        category={category}
+                    handlerChecked={handlerChecked}/>;
+    };
+
+     
+   
+    
 }

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {actionSetTodo} from '../store/todo';
-import { actionRemoveTodo } from "../store/todo";
 import AddTodo from '../Components/AddTodo/Index';
 import { connect } from 'react-redux';
 

@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 
 
 export class Input extends Component {
-    constructor(){
-        super()
-    }
+    // constructor(){
+    //     super()
+    // }
  
     
     render() {

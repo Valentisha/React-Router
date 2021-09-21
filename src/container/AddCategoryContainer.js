@@ -14,9 +14,6 @@ export default function AddCategoryContainer(){
     const [error, setError] = useState('');
 
     const handlerChangeInput = (e) => {
-
-
-        console.log(e)
         setValue(e.target.value);
     };
 
@@ -26,7 +23,8 @@ export default function AddCategoryContainer(){
             id: Date.now(),
             description: '',
             todoId: matchTodoId,
-            chekend: false
+            checked: false,
+            important: false, 
         };
         if(!matchTodoId){
             return setError('Выберите todo')
