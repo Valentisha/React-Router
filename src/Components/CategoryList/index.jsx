@@ -4,6 +4,7 @@ import { useRouteMatch } from "react-router";
 import Important from "../Icons/Important";
 import { useDispatch } from "react-redux";
 import { actionUpdateImportant } from "../../store/category";
+import { actionRemoveCategory } from "../../store/category";
 
 export default function CategoryList({category, handlerChecked}) {
     const match = useRouteMatch('/todo/:id');
@@ -21,8 +22,15 @@ export default function CategoryList({category, handlerChecked}) {
             important: newValue,
         }
 
-        dispatch(actionUpdateImportant(data))
+    dispatch(actionUpdateImportant(data))
 
+    }
+
+    const handlerRemoveCategory = (id) => {
+    const data = {
+        id: id
+    }
+    dispatch(actionRemoveCategory(data))
     }
 
     return (
@@ -36,6 +44,7 @@ export default function CategoryList({category, handlerChecked}) {
                     <div className="category__group-filter">
                          <input type="checkbox" checked={item.cheked} onChange={(e) => handlerChecked(e, item.id)}/>
                          <Important onClick={() => handlerUpdateImportant(item.id)}/>
+                         <button onClick={() => handlerRemoveCategory(item.id)}>Удалить</button>
                     </div>
                  </div>
              </li> : null

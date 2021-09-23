@@ -13,6 +13,7 @@ const actionTypes = {
     STATUS_ALL: 'STATUS_ALL',
     STATUS_FILTER_IMPORTANT: 'STATUS_FILTER_IMPORTANT',
     UPDATE_IMPORTANT: 'UPDATE_IMPORTANT',
+    REMOVE_CATEGORY: 'REMOVE_CATEGORY',
 
 }
 
@@ -24,6 +25,7 @@ export const actionStatusFilterActive = () => ({type: actionTypes.STATUS_FILTER_
 export const actionStatusAll = () => ({type: actionTypes.STATUS_ALL})
 export const actionUpdateImportant = (payload) => ({type: actionTypes.UPDATE_IMPORTANT, payload})
 export const actionStatusImportant = () => ({type: actionTypes.STATUS_FILTER_IMPORTANT})
+export const actionRemoveCategory = (payload) => ({type: actionTypes.REMOVE_CATEGORY, payload})
 
 export default function reducerCategory(state = initState, action){ 
 
@@ -45,6 +47,9 @@ export default function reducerCategory(state = initState, action){
 
         case actionTypes.UPDATE_IMPORTANT:
              return {...state, category: state.category.map((item) => item.id === action.payload.id ? {...item, important: action.payload.important} : item)}
+        
+        case actionTypes.REMOVE_CATEGORY:
+            return {...state, category: state.category.filter((item) => item.id !== action.payload.id)}
     
         default:
             return state;

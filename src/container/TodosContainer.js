@@ -1,70 +1,79 @@
-import React, { Component } from 'react';
+import React, {useState } from 'react';
 import Todos from '../Components/Todos';
 import {connect} from 'react-redux';
 import { actionEditTodo, actionRemoveTodo } from '../store/todo';
+import { useLocation } from 'react-router';
 
 
-class TodosContainer extends Component{
 
-    constructor(){
-        super()
-        this.state = {
-            isShow: false,
-            todoId: null,
-            updateTitle: '',
-            error: {},
-        }
+function TodosContainer ({actionRemoveTodo, actionEditTodo, todos}){
+    const [isShow, setIsShow] = useState(false);
+    const [todoId, setTodoId] = useState(null);
+    const [updateTitle, setUpdateTitle] = useState('');
+    const [error, setError] = useState({});
+
+    //     this.state = {
+    //         isShow: false,
+    //         todoId: null,
+    //         updateTitle: '',
+    //         error: {},
+    //     }
+    // }
+
+    const location = useLocation()
+
+    const getValueSearch = new URLSearchParams(location.search).get('search')
+
+const filterTodoTitle = getValueSearch ? todos.filter((item) => item.title.toLocaleLowerCase().includes(getValueSearch.toLocaleLowerCase().trim() )) : todos;
+
+    const handlerRemoveTodo = (id) => {
+        actionRemoveTodo(id);
     }
 
-    handlerRemoveTodo = (id) => {
-        this.props.actionRemoveTodo(id);
+    const handlerShowTodo = (todoId, todoTitle) => {
+        setIsShow(true); //изменение состояния
+        setTodoId(todoId);
+        setUpdateTitle(todoTitle);
     }
 
-    handlerShowTodo = (todoId, todoTitle) => {
-        this.setState({isShow: true}) //изменение состояния
-        this.setState({todoId: todoId})
-        this.setState({updateTitle: todoTitle})
-    }
-
-    handlerChange = (e) => {
-        this.setState({updateTitle: e.target.value})
+    const handlerChange = (e) => {
+        setUpdateTitle( e.target.value);
     } 
 
-    handlerClose = () => {
-        this.setState ({isShow: false})
+    const handlerClose = () => {
+        setIsShow (false);
     }
 
-    handlerUpdateTodo = (todoId) => {
+    const handlerUpdateTodo = (todoId) => {
         const data ={
             id: todoId,
-            title: this.state.updateTitle
+            title: updateTitle
         };
-        if(!this.state.updateTitle.trim()){
-           return this.setState({error: {massage: 'Дело не написано'} })
-
+        if(!updateTitle.trim()){
+            return setError({error: {massage: 'Дело не написано'} })
         }
-        this.props.actionEditTodo(data);
-        this.setState({isShow: false});
-        this.setState({error: {} });
+        actionEditTodo(data);
+        setIsShow(false);
+        setError({error: {} })
     }
 
-    render(){
+   
         return <Todos 
-            handlerChange={this.handlerChange}
-            updateTitle={this.state.updateTitle}
-            handlerUpdateTodo={this.handlerUpdateTodo}
-            todoId={this.state.todoId}
-            handlerShowTodo={this.handlerShowTodo}
-            isShow={this.state.isShow} 
-            todos={this.props.todo} 
-            error={this.state.error}
-            handlerRemoveTodo={this.handlerRemoveTodo}
-            handlerClose={this.handlerClose}/>
-    }
-};
+            handlerChange={handlerChange}
+            updateTitle={updateTitle}
+            handlerUpdateTodo={handlerUpdateTodo}
+            todoId={todoId}
+            handlerShowTodo={handlerShowTodo}
+            isShow={isShow} 
+            todos={filterTodoTitle} 
+            error={error}
+            handlerRemoveTodo={handlerRemoveTodo}
+            handlerClose={handlerClose}/>
+    };
+
 const mapStateToProps = (state) =>{
     return {
-        todo: state.reducerTodo.todos
+        todos: state.reducerTodo.todos
     }
 };
 const mapDispatchToProps = (dispatch) => {

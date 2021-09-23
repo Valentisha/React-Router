@@ -17,9 +17,14 @@ export default function Todos({isShow,
     error,
     handlerUpdateTodo,
     handlerRemoveTodo}) {
+
+    console.log(todos);
+    
+
+
     return (
         <ul className='lists'>
-            {todos.length ? todos.map((item) => {
+            {(todos && todos.length ) ? todos.map((item) => {
                 return <div key={item.id}>
                 <li  className='list'>
                      <Link to={`/todo/${item.id}`}> 

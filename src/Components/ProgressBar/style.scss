@@ -1,0 +1,15 @@
+.progress{
+    width: 98,5%;
+    height: 10px 0 10px;
+    border: 1px solid black;
+    border-radius: 50px;
+    margin: 10px;
+    padding: 5px;
+    &-bar{
+        width: 20px;
+        background-color: rgb(48, 153, 139) ;
+        border-radius: 50px;
+        padding: 1px;
+        height: 20px;
+    }
+}
