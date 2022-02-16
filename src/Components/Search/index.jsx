@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "../Input/Input";
 import { useHistory } from "react-router";
+import style from '../Search/style.scss';
 
 export default function Search(params) {
     const [value, setValue] = useState('')
@@ -15,8 +16,8 @@ export default function Search(params) {
     const url = new URL(window.location.href);
     console.log(url);
     return (
-        <div>
-            <Input placeholder='search todo' value={value} onChange={handleChange}/>
+        <div className='search-todo'>
+            <Input  placeholder='search todo' value={value} onChange={handleChange}/>
         </div>
     )
 }

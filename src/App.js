@@ -8,6 +8,7 @@ import CategoryListContainer from './container/CategoryListContainer';
 import ProgressBarContainer from './container/ProgressBarContainer';
 import Search from './Components/Search';
 
+
 function App() {
   return (
     <div>

@@ -5,6 +5,7 @@ import EditIcon from "../Icons/Edit";
 import RemoveIcon from "../Icons/Remove";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
+import PropTypes from 'prop-types';
 
 
 export default function Todos({isShow, 
@@ -24,7 +25,7 @@ export default function Todos({isShow,
 
     return (
         <ul className='lists'>
-            {(todos && todos.length ) ? todos.map((item) => {
+            {todos.length? todos.map((item) => {
                 return <div key={item.id}>
                 <li  className='list'>
                      <Link to={`/todo/${item.id}`}> 
@@ -53,4 +54,17 @@ export default function Todos({isShow,
             }) : <p>Нет списка дел</p>}
         </ul>
     )
+}
+
+Todos.propTypes = {
+    isShow: PropTypes.bool,
+    todoId: PropTypes.number,
+    handlerChange: PropTypes.func,
+    updateTitle: PropTypes.string,
+    handlerClose: PropTypes.func,
+    handlerShowTodo: PropTypes.func,
+    error: PropTypes.object,
+    todos: PropTypes.array,
+    handlerUpdateTodo: PropTypes. func,
+    handlerRemoveTodo: PropTypes.func
 }
